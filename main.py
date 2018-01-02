@@ -6,17 +6,14 @@ import os
 import time
 import sys
 from Utilities import real_path
+import HuobiService
 
 __author__ = 'gaoqiangxu'
 
 
-log_file = open(real_path("log_"+time.strftime("%Y%m%d")+".txt"), 'ab')
-
 def main():
-
-    root_dir = real_path(time.strftime("%Y-%m-%d"))
-    if not os.path.exists(root_dir):
-        os.makedirs(root_dir)
+    result = HuobiService.get_symbols()
+    print result
 
 
 if __name__ == "__main__":
