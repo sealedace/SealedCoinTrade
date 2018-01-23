@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Author  : sealedace
-# @github  : https://github.com/sealedace
+# @Date    : 2017-12-15 15:40:03
+# @Author  : KlausQiu
+# @QQ      : 375235513
+# @github  : https://github.com/KlausQIU
 
 from HuobiUtil import *
 
@@ -10,6 +12,7 @@ Market data API
 '''
 
 # 获取KLine
+
 
 def get_kline(symbol, period, size):
     """
@@ -238,27 +241,27 @@ def orders_matchresults(symbol, types=None, start_date=None, end_date=None, _fro
 
 
 # 申请提现虚拟币
-# def withdraw(address_id, amount, currency, fee=0, addr-tag=""):
-#     """
+def withdraw(address, amount, currency, fee=0, addr_tag=""):
+    """
 
-#     :param address_id: 
-#     :param amount: 
-#     :param currency:btc, ltc, bcc, eth, etc ...(火币Pro支持的币种)
-#     :param fee: 
-#     :param addr-tag:
-#     :return: {
-#               "status": "ok",
-#               "data": 700
-#             }
-#     """
-#     params = {'address-id': address_id,
-#               'amount': amount,
-#               "currency": currency,
-#               "fee": fee,
-#               "addr-tag": addr-tag}
-#     url = '/v1/dw/withdraw/api/create'
+    :param address_id: 
+    :param amount: 
+    :param currency:btc, ltc, bcc, eth, etc ...(火币Pro支持的币种)
+    :param fee: 
+    :param addr_tag:
+    :return: {
+              "status": "ok",
+              "data": 700
+            }
+    """
+    params = {'address': address,
+              'amount': amount,
+              "currency": currency,
+              "fee": fee,
+              "addr-tag": addr_tag}
+    url = '/v1/dw/withdraw/api/create'
 
-#     return api_key_post(params, url)
+    return api_key_post(params, url)
 
 # 申请取消提现虚拟币
 
@@ -391,16 +394,18 @@ def loan_orders(symbol, currency, start_date="", end_date="", start="", direct="
 
 
 # 借贷账户详情,支持查询单个币种
-def margin_balance(symbol=""):
+def margin_balance(symbol):
     """
     :param symbol: 
     :return: 
     """
-    if symbol:
-        url = "/v1/margin/accounts/balance?symbol={0}".format(symbol)
-    else:
-        url = "/v1/margin/accounts/balance"
     params = {}
+    url = "/v1/margin/accounts/balance"
+    if symbol:
+        params['symbol'] = symbol
+    
+    return api_key_get(params, url)
 
-    return api_key_get(params,url)
 
+# if __name__ == '__main__':
+#     print get_symbols()
