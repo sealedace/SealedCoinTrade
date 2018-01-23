@@ -2,18 +2,16 @@
 
 #!/usr/bin/env python
 
-import os
-import time
-import sys
-from Utilities import real_path
-import HuobiService
+# import os
+# import time
+# import sys
+from SealedRobot import * 
 
 __author__ = 'gaoqiangxu'
 
 
 def main():
-    result = HuobiService.get_symbols()
-    print result
+    robot = SealedRobot()
 
 
 if __name__ == "__main__":
